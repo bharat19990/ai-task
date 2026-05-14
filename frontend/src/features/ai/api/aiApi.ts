@@ -14,9 +14,24 @@ export interface AiApiResponse {
   data: GenerateContentResponse;
 }
 
+export interface Suggestion {
+  title: string;
+  description: string;
+}
+
+export interface SuggestionsApiResponse {
+  success: boolean;
+  data: Suggestion[];
+}
+
 const aiApi = {
   generateContent: async (data: GenerateContentRequest): Promise<GenerateContentResponse> => {
     const response = await api.post<AiApiResponse>('/ai/generate', data);
+    return response.data.data;
+  },
+
+  getSuggestions: async (): Promise<Suggestion[]> => {
+    const response = await api.get<SuggestionsApiResponse>('/ai/suggestions');
     return response.data.data;
   },
 };
