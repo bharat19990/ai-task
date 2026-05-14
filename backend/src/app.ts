@@ -3,6 +3,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import authRoutes from './features/auth/auth.routes.js';
 import postRoutes from './features/posts/post.routes.js';
+import aiRoutes from './features/ai/ai.routes.js';
 import { errorHandler, notFoundHandler } from './middlewares/errorMiddleware.js';
 
 const app = express();
@@ -36,6 +37,7 @@ app.get('/api/health', (_req, res) => {
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/posts', postRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Error handling
 app.use(notFoundHandler);
